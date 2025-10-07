@@ -5,9 +5,6 @@ name: rani-ukamble-group/deploy_file
       environment:
         required: true
         type: string
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
 jobs:
   deploy_file:
     runs-on: ubuntu-latest
