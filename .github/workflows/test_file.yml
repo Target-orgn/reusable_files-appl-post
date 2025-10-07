@@ -5,9 +5,6 @@ name: rani-ukamble-group/test_file
       environment:
         required: true
         type: string
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
 jobs:
   test_file:
     runs-on: ubuntu-latest
