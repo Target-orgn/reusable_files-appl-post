@@ -13,4 +13,9 @@ jobs:
       with:
         fetch-depth: 20
     - run: echo "Building the application..."
-'on': workflow_call
+'on':
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
