@@ -1,4 +1,10 @@
-name: rani-ukamble-group/reusable_files_application
+'on':
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy to
+        required: true
+        default: production
 jobs:
   call-build:
     uses: Target-orgn/target-simple-reusable1/.github/workflows/build_file.yml@main
@@ -8,3 +14,4 @@ jobs:
     uses: Target-orgn/target-simple-reusable1/.github/workflows/test_file.yml@main
     with:
       environment: ${{ inputs.environment }}
+name: rani-ukamble-group/reusable_files_application
