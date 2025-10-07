@@ -5,9 +5,6 @@ name: rani-ukamble-group/build_file
       environment:
         required: true
         type: string
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
 jobs:
   build1:
     runs-on: ubuntu-latest
