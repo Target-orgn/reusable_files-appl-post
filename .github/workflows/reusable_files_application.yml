@@ -1,16 +1,31 @@
-!!python/object/apply:collections.OrderedDict
-- - - name
-    - rani-ukamble-group/reusable_files_application
-  - - true
-    - push: null
-      workflow_dispatch: null
-  - - jobs
-    - !!python/object/apply:collections.OrderedDict
-      - - - call-build
-          - uses: Target-orgn/target-simple-reusable1/.github/workflows/build_file.yml@main
-            with:
-              environment: ${{ inputs.environment }}
-        - - call-test
-          - uses: Target-orgn/target-simple-reusable1/.github/workflows/test_file.yml@main
-            with:
-              environment: ${{ inputs.environment }}
+name: rani-ukamble-group/reusable_files_application
+on:
+  push:
+  workflow_dispatch:
+concurrency:
+  group: "${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "Building the application..."
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4.1.0
+      with:
+        fetch-depth: 20
+        lfs: true
+    - run: echo "Running tests..running"
